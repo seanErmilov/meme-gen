@@ -19,23 +19,28 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
 
   elImg.onload = () => {
     gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
-    drawText(meme.lines[meme.selectedLineIdx].txt, gElCanvas.width / 2, 50)
+    drawText()
   }
 }
 
-function drawText(text, x, y) {
+function drawText() {
+  const selectedLine = getLine()
   gCtx.lineWidth = 2
-  gCtx.strokeStyle = 'brown'
-  gCtx.fillStyle = 'black'
+  gCtx.strokeStyle = selectedLine.color
+  gCtx.fillStyle = selectedLine.color
   gCtx.font = '40px Arial'
   gCtx.textAlign = 'center'
   gCtx.textBaseline = 'middle'
-  gCtx.fillText(text, x, y)
-  gCtx.strokeText(text, x, y)
+  gCtx.fillText(selectedLine.txt, selectedLine.pos.x, selectedLine.pos.y)
+  gCtx.strokeText(selectedLine.txt, selectedLine.pos.x, selectedLine.pos.y)
 }
 
 function onSetLineTxt(msg) {
   setLineTxt(msg)
+  renderMeme()
+}
+function onSetLineColor(color) {
+  setLineColor(color)
   renderMeme()
 }
 

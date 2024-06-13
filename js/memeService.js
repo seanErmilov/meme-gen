@@ -22,8 +22,8 @@ var gMeme = {
   selectedLineIdx: 0,
   lines: [
     {
-      txt: 'Isometimeseat Falafel',
-      pos: { x: 10, y: 10 },
+      txt: 'write here',
+      pos: { x: 200, y: 20 },
       isDrag: false,
       size: 20,
       color: 'red',
@@ -40,9 +40,20 @@ function getimgs() {
   return gImgs
 }
 
+function getLine() {
+  console.log(
+    'gMeme.lines[selectedLineIdx] :',
+    gMeme.lines[gMeme.selectedLineIdx]
+  )
+  return gMeme.lines[gMeme.selectedLineIdx]
+}
+
 function setLineTxt(msg) {
-  console.log('msg :', msg)
   gMeme.lines[gMeme.selectedLineIdx].txt = msg
+}
+
+function setLineColor(color) {
+  gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
 function setImg(imgId) {
