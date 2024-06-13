@@ -10,7 +10,7 @@ function onInit() {
   renderMeme()
 }
 
-function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
+function renderMeme() {
   const elImg = new Image()
   const meme = getMeme()
   const imgs = getimgs()
@@ -19,20 +19,22 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
 
   elImg.onload = () => {
     gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
-    drawText()
+    const lines = getLines()
+    lines.forEach((line) => {
+      drawText(line)
+    })
   }
 }
 
-function drawText() {
-  const selectedLine = getLine()
+function drawText(curLine) {
   gCtx.lineWidth = 2
-  gCtx.strokeStyle = selectedLine.color
-  gCtx.fillStyle = selectedLine.color
-  gCtx.font = '40px Arial'
+  gCtx.strokeStyle = curLine.color
+  gCtx.fillStyle = curLine.color
+  gCtx.font = `${curLine.font}px Arial`
   gCtx.textAlign = 'center'
   gCtx.textBaseline = 'middle'
-  gCtx.fillText(selectedLine.txt, selectedLine.pos.x, selectedLine.pos.y)
-  gCtx.strokeText(selectedLine.txt, selectedLine.pos.x, selectedLine.pos.y)
+  gCtx.fillText(curLine.txt, curLine.pos.x, curLine.pos.y)
+  gCtx.strokeText(curLine.txt, curLine.pos.x, curLine.pos.y)
 }
 
 function onSetLineTxt(msg) {
@@ -41,6 +43,16 @@ function onSetLineTxt(msg) {
 }
 function onSetLineColor(color) {
   setLineColor(color)
+  renderMeme()
+}
+
+function onSetFont(diff) {
+  setFont(diff)
+  renderMeme()
+}
+
+function onAddLine() {
+  addLine()
   renderMeme()
 }
 

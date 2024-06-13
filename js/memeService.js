@@ -24,9 +24,10 @@ var gMeme = {
     {
       txt: 'write here',
       pos: { x: 200, y: 20 },
-      isDrag: false,
       size: 20,
       color: 'red',
+      font: 40,
+      isDrag: false,
     },
   ],
 }
@@ -41,10 +42,6 @@ function getimgs() {
 }
 
 function getLine() {
-  console.log(
-    'gMeme.lines[selectedLineIdx] :',
-    gMeme.lines[gMeme.selectedLineIdx]
-  )
   return gMeme.lines[gMeme.selectedLineIdx]
 }
 
@@ -58,6 +55,52 @@ function setLineColor(color) {
 
 function setImg(imgId) {
   gMeme.selectedImgId = imgId
+}
+
+function setFont(diff) {
+  gMeme.lines[gMeme.selectedLineIdx].font += diff
+}
+
+function addLine() {
+  const newLine = createLine()
+  gMeme.lines.push(newLine)
+}
+
+function getLines() {
+  return gMeme.lines
+}
+
+function createLine() {
+  if (gMeme.lines.length === 0) {
+    return {
+      txt: 'write here',
+      pos: { x: 200, y: 20 },
+      size: 20,
+      color: 'red',
+      font: 40,
+      isDrag: false,
+    }
+  }
+
+  if (gMeme.lines.length === 1) {
+    return {
+      txt: 'write here',
+      pos: { x: 200, y: 400 },
+      size: 20,
+      color: 'red',
+      font: 40,
+      isDrag: false,
+    }
+  }
+
+  return {
+    txt: 'write here',
+    pos: { x: 200, y: 200 },
+    size: 20,
+    color: 'red',
+    font: 40,
+    isDrag: false,
+  }
 }
 
 function downloadMeme(elLink) {
