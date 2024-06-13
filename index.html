@@ -17,8 +17,10 @@
         type="text"
         name="line-txt"
         placeholder="Insert your text"
-        onchange="onSetLineTxt(this.value)"
+        oninput="onSetLineTxt(this.value)"
+        onkeydown="onClearinputKey(event, this)"
       />
+      <a href="#" onclick="onDownload(this)" download>Download</a>
     </section>
 
     <section class="gallery-containor">

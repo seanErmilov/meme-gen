@@ -1,6 +1,8 @@
 'use strict'
 
 var gMeme
+let gStartPos
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 var gImgs = [
   {
@@ -14,10 +16,19 @@ var gImgs = [
     keywords: ['funny', 'cat'],
   },
 ]
+
 var gMeme = {
   selectedImgId: 1,
   selectedLineIdx: 0,
-  lines: [{ txt: 'Isometimeseat Falafel', size: 20, color: 'red' }],
+  lines: [
+    {
+      txt: 'Isometimeseat Falafel',
+      pos: { x: 10, y: 10 },
+      isDrag: false,
+      size: 20,
+      color: 'red',
+    },
+  ],
 }
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
@@ -36,4 +47,12 @@ function setLineTxt(msg) {
 
 function setImg(imgId) {
   gMeme.selectedImgId = imgId
+}
+
+function downloadMeme(elLink) {
+  const dataUrl = gElCanvas.toDataURL()
+  // console.log('dataUrl:', dataUrl)
+  elLink.href = dataUrl
+  // Set a name for the downloaded file
+  elLink.download = 'my-img'
 }

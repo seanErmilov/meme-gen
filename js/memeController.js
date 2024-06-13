@@ -38,3 +38,13 @@ function onSetLineTxt(msg) {
   setLineTxt(msg)
   renderMeme()
 }
+
+function onClearinputKey(event, inputElement) {
+  if (event.key === 'Escape' || event.key === 'Enter') {
+    inputElement.value = ''
+  }
+}
+
+function onDownload(elLink) {
+  downloadMeme(elLink)
+}
