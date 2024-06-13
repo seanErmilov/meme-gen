@@ -26,3 +26,8 @@ canvas {
     width: 80vw;
   }
 }
+
+.gallery-containor img {
+  width: 100px;
+  height: 100px;
+}

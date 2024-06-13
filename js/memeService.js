@@ -5,6 +5,11 @@ var gMeme
 var gImgs = [
   {
     id: 1,
+    url: 'meme-imgs/meme-imgs (square)/1.jpg',
+    keywords: ['funny', 'cat'],
+  },
+  {
+    id: 2,
     url: 'meme-imgs/meme-imgs (square)/2.jpg',
     keywords: ['funny', 'cat'],
   },
@@ -27,4 +32,8 @@ function getimgs() {
 function setLineTxt(msg) {
   console.log('msg :', msg)
   gMeme.lines[gMeme.selectedLineIdx].txt = msg
+}
+
+function setImg(imgId) {
+  gMeme.selectedImgId = imgId
 }

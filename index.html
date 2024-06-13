@@ -7,7 +7,7 @@
     <title>Meme Generator</title>
   </head>
   <body onload="onInit()">
-    <section class="gallery-containor">
+    <section class="editor">
       <div class="canvas-container">
         <h3>container</h3>
         <canvas width="600" height="600"></canvas>
@@ -20,9 +20,25 @@
         onchange="onSetLineTxt(this.value)"
       />
     </section>
-    <section class="editor"></section>
+
+    <section class="gallery-containor">
+      <h3>Select an image</h3>
+      <img
+        src="meme-imgs/meme-imgs (square)/1.jpg"
+        data-id="1"
+        onclick="onSelectImg(this)"
+        class="square"
+      />
+      <img
+        src="meme-imgs/meme-imgs (square)/2.jpg"
+        data-id="2"
+        onclick="onSelectImg(this)"
+      />
+    </section>
+
     <script src="js/main.js"></script>
     <script src="js/memeController.js"></script>
     <script src="js/memeService.js"></script>
+    <script src="js/galleryController.js"></script>
   </body>
 </html>
