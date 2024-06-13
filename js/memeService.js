@@ -23,3 +23,8 @@ function getMeme() {
 function getimgs() {
   return gImgs
 }
+
+function setLineTxt(msg) {
+  console.log('msg :', msg)
+  gMeme.lines[gMeme.selectedLineIdx].txt = msg
+}

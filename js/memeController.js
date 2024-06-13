@@ -15,16 +15,11 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
   const meme = getMeme()
   const imgs = getimgs()
 
-  console.log('meme :', meme)
   elImg.src = imgs[meme.selectedImgId - 1].url
 
   elImg.onload = () => {
     gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
     drawText(meme.lines[meme.selectedLineIdx].txt, gElCanvas.width / 2, 50)
-    console.log(
-      'meme.lines[meme.selectedLineIdx] :',
-      meme.lines[meme.selectedLineIdx]
-    )
   }
 }
 
@@ -37,4 +32,9 @@ function drawText(text, x, y) {
   gCtx.textBaseline = 'middle'
   gCtx.fillText(text, x, y)
   gCtx.strokeText(text, x, y)
+}
+
+function onSetLineTxt(msg) {
+  setLineTxt(msg)
+  renderMeme()
 }
