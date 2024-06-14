@@ -1,7 +1,6 @@
 'use strict'
 
 var gMeme
-let gStartPos
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 var gImgs = [
@@ -24,9 +23,8 @@ var gMeme = {
     {
       txt: 'write here',
       pos: { x: 200, y: 20 },
-      size: 20,
+      size: 40,
       color: 'red',
-      font: 40,
       isDrag: false,
     },
   ],
@@ -41,7 +39,7 @@ function getimgs() {
   return gImgs
 }
 
-function getLine() {
+function getSelectedLine() {
   return gMeme.lines[gMeme.selectedLineIdx]
 }
 
@@ -58,7 +56,7 @@ function setImg(imgId) {
 }
 
 function setFont(diff) {
-  gMeme.lines[gMeme.selectedLineIdx].font += diff
+  gMeme.lines[gMeme.selectedLineIdx].size += diff
 }
 
 function addLine() {
@@ -82,9 +80,8 @@ function createLine() {
     return {
       txt: 'write here',
       pos: { x: 200, y: 20 },
-      size: 20,
+      size: 40,
       color: 'red',
-      font: 40,
       isDrag: false,
     }
   }
@@ -93,9 +90,8 @@ function createLine() {
     return {
       txt: 'write here',
       pos: { x: 200, y: 400 },
-      size: 20,
+      size: 40,
       color: 'red',
-      font: 40,
       isDrag: false,
     }
   }
@@ -103,9 +99,8 @@ function createLine() {
   return {
     txt: 'write here',
     pos: { x: 200, y: 200 },
-    size: 20,
+    size: 40,
     color: 'red',
-    font: 40,
     isDrag: false,
   }
 }
@@ -116,4 +111,50 @@ function downloadMeme(elLink) {
   elLink.href = dataUrl
   // Set a name for the downloaded file
   elLink.download = 'my-img'
+}
+
+function isLineClicked(clickedPos) {
+  // const { pos, size, txt } = gMeme.lines[gMeme.selectedLineIdx]
+  // //* Calc the distance between two dots
+  // const textMetrics = gCtx.measureText(txt)
+
+  // const textWidth = textMetrics.width
+  // return (
+  //   clickedPos.x >= pos.x &&
+  //   clickedPos.x <= pos.x + textWidth &&
+  //   clickedPos.y >= pos.y &&
+  //   clickedPos.y <= pos.y + size
+  // )
+
+  const idx = gMeme.lines.findIndex((line) => {
+    console.log('line :', line)
+    const { pos, size, txt } = line
+    console.log('pos :', pos)
+    const textMetrics = gCtx.measureText(txt)
+    const textWidth = textMetrics.width
+    return (
+      clickedPos.x >= pos.x &&
+      clickedPos.x <= pos.x + textWidth &&
+      clickedPos.y >= pos.y &&
+      clickedPos.y <= pos.y + size
+    )
+  })
+  console.log('idx :', idx)
+  if (idx !== -1) gMeme.selectedLineIdx = idx
+  return idx !== -1
+}
+
+function setLineDrag(isDrag) {
+  gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+}
+
+function moveLine(dx, dy) {
+  const curPos = gMeme.lines[gMeme.selectedLineIdx].pos
+  console.log('curPos :', curPos)
+  console.log(
+    'gMeme.lines[gMeme.selectedLineIdx].pos :',
+    gMeme.lines[gMeme.selectedLineIdx].pos
+  )
+  curPos.x += dx
+  curPos.y += dy
 }

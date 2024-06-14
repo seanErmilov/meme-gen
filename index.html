@@ -6,12 +6,18 @@
     <link rel="stylesheet" href="css/main.css" />
     <title>Meme Generator</title>
   </head>
-  <body onload="onInit()">
+  <body class="main-layout" onload="onInit()">
+    <header>
+      <div class="logo">Memegen</div>
+      <button>Gallery</button>
+      <button>About</button>
+    </header>
+
     <section class="editor">
       <div class="canvas-container">
-        <h3>container</h3>
         <canvas width="600" height="600"></canvas>
       </div>
+
       <input
         class="line-txt"
         type="text"
@@ -20,16 +26,28 @@
         oninput="onSetLineTxt(this.value)"
         onkeydown="onClearinputKey(event, this)"
       />
+      <button onclick="onSwitchLine()">switch line</button>
+      <button onclick="onAddLine()">add line</button>
+      <button>delete</button>
+      <button onclick="onSetFont(5)">increase</button>
+      <button onclick="onSetFont(-5)">decrease</button>
+      <button>textleft</button>
+      <button>textcenter</button>
+      <button>textright</button>
+
+      <select id="fonts">
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+        <option value="cherry">Cherry</option>
+        <option value="orange">Orange</option>
+      </select>
+
       <input
         type="color"
         name="meme-color"
         id=""
         oninput="onSetLineColor(this.value)"
       />
-      <button onclick="onSetFont(5)">increase</button>
-      <button onclick="onSetFont(-5)">decrease</button>
-      <button onclick="onAddLine()">add line</button>
-      <button onclick="onSwitchLine()">switch line</button>
       <a href="#" onclick="onDownload(this)" download>Download</a>
     </section>
 
@@ -47,7 +65,10 @@
         onclick="onSelectImg(this)"
       />
     </section>
-
+    <footer>
+      <div class="logo">memegen</div>
+      <p>All lights reserved 2024</p>
+    </footer>
     <script src="js/main.js"></script>
     <script src="js/memeController.js"></script>
     <script src="js/memeService.js"></script>
