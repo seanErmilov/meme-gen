@@ -56,6 +56,10 @@ function onAddLine() {
   renderMeme()
 }
 
+function onSwitchLine() {
+  switchLine()
+  renderMeme()
+}
 function onClearinputKey(event, inputElement) {
   if (event.key === 'Escape' || event.key === 'Enter') {
     inputElement.value = ''
