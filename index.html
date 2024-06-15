@@ -28,18 +28,18 @@
       />
       <button onclick="onSwitchLine()">switch line</button>
       <button onclick="onAddLine()">add line</button>
-      <button>delete</button>
-      <button onclick="onSetFont(5)">increase</button>
-      <button onclick="onSetFont(-5)">decrease</button>
+      <button onclick="onDeleteLine()">delete</button>
+      <button onclick="onSetSize(5)">increase</button>
+      <button onclick="onSetSize(-5)">decrease</button>
       <button>textleft</button>
       <button>textcenter</button>
       <button>textright</button>
 
-      <select id="fonts">
-        <option value="apple">Apple</option>
-        <option value="banana">Banana</option>
-        <option value="cherry">Cherry</option>
-        <option value="orange">Orange</option>
+      <select onchange="onSetFont(value)" id="fonts">
+        <option value="Impact">Impact</option>
+        <option value="Arial">Arial</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Tahoma">Tahoma</option>
       </select>
 
       <input
@@ -65,6 +65,9 @@
         onclick="onSelectImg(this)"
       />
     </section>
+    <button class="btn" onclick="onUploadImg()">
+      Upload Image from Canvas and Share on Facebook
+    </button>
     <footer>
       <div class="logo">memegen</div>
       <p>All lights reserved 2024</p>
@@ -73,5 +76,6 @@
     <script src="js/memeController.js"></script>
     <script src="js/memeService.js"></script>
     <script src="js/galleryController.js"></script>
+    <script src="js/sharing-on-facebook.js"></script>
   </body>
 </html>

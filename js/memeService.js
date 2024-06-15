@@ -25,6 +25,7 @@ var gMeme = {
       pos: { x: 200, y: 20 },
       size: 40,
       color: 'red',
+      font: 'Impact',
       isDrag: false,
     },
   ],
@@ -55,8 +56,13 @@ function setImg(imgId) {
   gMeme.selectedImgId = imgId
 }
 
-function setFont(diff) {
+function setSize(diff) {
   gMeme.lines[gMeme.selectedLineIdx].size += diff
+}
+
+function setFont(font) {
+  const line = getSelectedLine()
+  line.font = font
 }
 
 function addLine() {
@@ -71,6 +77,10 @@ function switchLine() {
   }
 }
 
+function deleteLine(idx = gMeme.selectedLineIdx) {
+  gMeme.lines.splice(idx, 1)
+}
+
 function getLines() {
   return gMeme.lines
 }
@@ -82,6 +92,7 @@ function createLine() {
       pos: { x: 200, y: 20 },
       size: 40,
       color: 'red',
+      font: 'Impact',
       isDrag: false,
     }
   }
@@ -92,6 +103,7 @@ function createLine() {
       pos: { x: 200, y: 400 },
       size: 40,
       color: 'red',
+      font: 'Impact',
       isDrag: false,
     }
   }
@@ -101,6 +113,7 @@ function createLine() {
     pos: { x: 200, y: 200 },
     size: 40,
     color: 'red',
+    font: 'Impact',
     isDrag: false,
   }
 }
@@ -114,22 +127,8 @@ function downloadMeme(elLink) {
 }
 
 function isLineClicked(clickedPos) {
-  // const { pos, size, txt } = gMeme.lines[gMeme.selectedLineIdx]
-  // //* Calc the distance between two dots
-  // const textMetrics = gCtx.measureText(txt)
-
-  // const textWidth = textMetrics.width
-  // return (
-  //   clickedPos.x >= pos.x &&
-  //   clickedPos.x <= pos.x + textWidth &&
-  //   clickedPos.y >= pos.y &&
-  //   clickedPos.y <= pos.y + size
-  // )
-
   const idx = gMeme.lines.findIndex((line) => {
-    console.log('line :', line)
     const { pos, size, txt } = line
-    console.log('pos :', pos)
     const textMetrics = gCtx.measureText(txt)
     const textWidth = textMetrics.width
     return (
@@ -139,7 +138,7 @@ function isLineClicked(clickedPos) {
       clickedPos.y <= pos.y + size
     )
   })
-  console.log('idx :', idx)
+
   if (idx !== -1) gMeme.selectedLineIdx = idx
   return idx !== -1
 }
@@ -150,11 +149,6 @@ function setLineDrag(isDrag) {
 
 function moveLine(dx, dy) {
   const curPos = gMeme.lines[gMeme.selectedLineIdx].pos
-  console.log('curPos :', curPos)
-  console.log(
-    'gMeme.lines[gMeme.selectedLineIdx].pos :',
-    gMeme.lines[gMeme.selectedLineIdx].pos
-  )
   curPos.x += dx
   curPos.y += dy
 }

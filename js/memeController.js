@@ -36,9 +36,10 @@ function renderMeme() {
 function drawText(curLine) {
   gCtx.beginPath()
   gCtx.lineWidth = 2
-  gCtx.strokeStyle = curLine.color
+  gCtx.setLineDash([])
+  gCtx.strokeStyle = 'black'
   gCtx.fillStyle = curLine.color
-  gCtx.font = `${curLine.size}px Arial`
+  gCtx.font = `${curLine.size}px ${curLine.font}`
   gCtx.textAlign = 'left'
   gCtx.textBaseline = 'top'
   gCtx.fillText(curLine.txt, curLine.pos.x, curLine.pos.y)
@@ -80,8 +81,6 @@ function onMove(ev) {
   //* Calc the delta, the diff we moved
   const dx = pos.x - gStartPos.x
   const dy = pos.y - gStartPos.y
-  console.log('dx :', dx)
-  console.log('dy :', dy)
   moveLine(dx, dy)
   //* Save the last pos, we remember where we`ve been and move accordingly
   gStartPos = pos
@@ -143,7 +142,6 @@ function resizeCanvas() {
   const elContainer = document.querySelector('.canvas-container')
   gElCanvas.width = elContainer.offsetWidth
   gElCanvas.height = elContainer.offsetHeight
-  console.log('elContainer.offsetHeight :', elContainer.offsetHeight)
 }
 
 function onSetLineTxt(msg) {
@@ -155,8 +153,8 @@ function onSetLineColor(color) {
   renderMeme()
 }
 
-function onSetFont(diff) {
-  setFont(diff)
+function onSetSize(diff) {
+  setSize(diff)
   renderMeme()
 }
 
@@ -170,6 +168,15 @@ function onSwitchLine() {
   renderMeme()
 }
 
+function onDeleteLine() {
+  deleteLine()
+  renderMeme()
+}
+
+function onSetFont(font) {
+  setFont(font)
+  renderMeme()
+}
 function onClearinputKey(event, inputElement) {
   if (event.key === 'Escape' || event.key === 'Enter') {
     inputElement.value = ''
