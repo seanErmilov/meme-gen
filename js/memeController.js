@@ -20,7 +20,7 @@ function renderMeme() {
   // }
 
   elImg.onload = () => {
-    gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
+    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 
     const lines = getLines()
     lines.forEach((line) => {
@@ -141,13 +141,15 @@ function resizeCanvas() {
   const elImg = document.querySelector(
     `.meme-img[data-id="${getSelectedImgId()}"]`
   )
-  console.log('elImg :', elImg)
   gElCanvas.width = elContainer.offsetWidth
   gElCanvas.height = elContainer.offsetHeight
 
-  if (screen.width < 1000) {
-    gElCanvas.width = screen.width - 20
-    gElCanvas.height = 400
+  if (screen.width < 600) {
+    gElCanvas.width = 200
+    gElCanvas.height = 100
+  } else if (screen.width < 1000) {
+    gElCanvas.width = 200
+    gElCanvas.height = 100
   } else {
     gElCanvas.width = elImg.width
     gElCanvas.height = elImg.height

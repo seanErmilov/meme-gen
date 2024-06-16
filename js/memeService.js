@@ -44,7 +44,6 @@ function getImgs() {
 }
 
 function getSelectedImgId() {
-  console.log('gImgs[gMeme.selectedImgId] :', gImgs[gMeme.selectedImgId])
   return gImgs[gMeme.selectedImgId].id
 }
 

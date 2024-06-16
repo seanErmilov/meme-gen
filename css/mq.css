@@ -1,3 +1,77 @@
+@media (min-width: 768px) {
+  .images-container {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* 2 columns on screens wider than 768px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .images-container {
+    grid-template-columns: repeat(
+      3,
+      1fr
+    ); /* 3 columns on screens wider than 1024px */
+  }
+}
+@media (max-width: 1100px) {
+  .main-layout {
+    display: grid;
+  }
+
+  .main-nav {
+    position: sticky;
+  }
+
+  .search-input {
+    position: relative;
+
+    width: 130px;
+    height: 1.5em;
+    margin: 10px;
+  }
+
+  .input-search-icon {
+    position: absolute;
+    width: 20px;
+    left: 125px;
+  }
+
+  .frequent-keywords {
+    gap: 10px;
+  }
+
+  .images-container {
+    grid-template-columns: repeat(
+      5,
+      1fr
+    ); /* 5 columns on screens wider than 1200px */
+  }
+
+  .canvas-container {
+    position: relative;
+    margin-inline: auto;
+    top: 28vh;
+    min-height: 20vh;
+    height: 500px;
+    padding: 20px;
+  }
+
+  .contorls-container {
+    position: absolute;
+    transform: translateY(100%);
+
+    min-height: 20vh;
+    min-width: 90vw;
+    margin-inline: 50px;
+    padding-inline: 0;
+  }
+
+  footer {
+    position: fixed;
+  }
+}
 @media (max-width: 1100px) {
   .main-layout {
     display: grid;
@@ -30,7 +104,7 @@
     margin-inline: auto;
     top: 28vh;
     min-height: 20vh;
-    height: 80px;
+    height: 500px;
     padding: 20px;
   }
 

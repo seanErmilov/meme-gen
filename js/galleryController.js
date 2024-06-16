@@ -3,9 +3,6 @@
 function onInit() {
   createImgs()
   renderGallery()
-  //   addListeners()
-  //   resizeCanvas()
-  // renderMeme()
 }
 
 function onSelectImg(elImg) {
@@ -41,7 +38,6 @@ function addImageEventListeners(imgs) {
 function renderPage(elPage) {
   const pageValue = elPage.toLowerCase()
   const pageToRender = document.querySelector(`.${pageValue}`)
-  console.log('pageToRender :', pageToRender)
   const allPages = document.querySelectorAll('.page')
   for (var i = 0; i < allPages.length; i++) {
     allPages[i].style.display = 'none'
