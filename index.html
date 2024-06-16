@@ -3,79 +3,113 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <title>Meme Generator</title>
   </head>
+
   <body class="main-layout" onload="onInit()">
-    <header>
-      <div class="logo">Memegen</div>
-      <button>Gallery</button>
-      <button>About</button>
+    <header lass="main-layout">
+      <nav class="main-nav">
+        <div class="main-logo">Memegen</div>
+
+        <div class="nav-links">
+          <div class="nav-link">Gallery</div>
+          <div class="nav-link">About</div>
+        </div>
+      </nav>
     </header>
 
-    <section class="editor">
+    <section class="gallery-containor page">
+      <section class="gallery-header">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="Enter keyword(s)"
+        />
+        <img
+          class="input-search-icon"
+          src="img/search.png"
+          alt="magnifying-glass"
+        />
+        <div class="frequent-keywords">
+          <p>funny</p>
+          <p>sad</p>
+          <p>dog</p>
+          <p>cute</p>
+          <p class="more-keywords">more..</p>
+        </div>
+      </section>
+
+      <section class="images-container">
+        <!-- <img
+          src="meme-imgs/meme-imgs (square)/1.jpg"
+          data-id="1"
+          onclick="onSelectImg(this)"
+          class="square"
+        />
+        <img
+          src="meme-imgs/meme-imgs (square)/2.jpg"
+          data-id="2"
+          onclick="onSelectImg(this)"
+        /> -->
+      </section>
+
+      <section class="gallery-footer"></section>
+    </section>
+
+    <section class="editor-container editor-layout page">
       <div class="canvas-container">
-        <canvas width="600" height="600"></canvas>
+        <canvas width="250" height="250"></canvas>
       </div>
 
-      <input
-        class="line-txt"
-        type="text"
-        name="line-txt"
-        placeholder="Insert your text"
-        oninput="onSetLineTxt(this.value)"
-        onkeydown="onClearinputKey(event, this)"
-      />
-      <button onclick="onSwitchLine()">switch line</button>
-      <button onclick="onAddLine()">add line</button>
-      <button onclick="onDeleteLine()">delete</button>
-      <button onclick="onSetSize(5)">increase</button>
-      <button onclick="onSetSize(-5)">decrease</button>
-      <button>textleft</button>
-      <button>textcenter</button>
-      <button>textright</button>
+      <div class="contorls-container">
+        <input
+          class="line-txt"
+          type="text"
+          name="line-txt"
+          placeholder="Insert your text"
+          oninput="onSetLineTxt(this.value)"
+          onkeydown="onClearinputKey(event, this)"
+        />
+        <button class="btn" onclick="onSwitchLine()">switch line</button>
+        <button class="btn" onclick="onAddLine()">add line</button>
+        <button class="btn" onclick="onDeleteLine()">delete</button>
+        <button class="btn" onclick="onSetSize(5)">increase</button>
+        <button class="btn" onclick="onSetSize(-5)">decrease</button>
+        <button class="btn">textleft</button>
+        <button class="btn">textcenter</button>
+        <button class="btn">textright</button>
 
-      <select onchange="onSetFont(value)" id="fonts">
-        <option value="Impact">Impact</option>
-        <option value="Arial">Arial</option>
-        <option value="Verdana">Verdana</option>
-        <option value="Tahoma">Tahoma</option>
-      </select>
+        <select class="btn" onchange="onSetFont(value)" id="fonts">
+          <option value="Impact">Impact</option>
+          <option value="Arial">Arial</option>
+          <option value="Verdana">Verdana</option>
+          <option value="Tahoma">Tahoma</option>
+        </select>
 
-      <input
-        type="color"
-        name="meme-color"
-        id=""
-        oninput="onSetLineColor(this.value)"
-      />
-      <a href="#" onclick="onDownload(this)" download>Download</a>
+        <input
+          type="color"
+          name="meme-color"
+          id=""
+          oninput="onSetLineColor(this.value)"
+        />
+        <a class="btn" href="#" onclick="onDownload(this)" download>Download</a>
+        <button class="btn" onclick="onUploadImg()">
+          Upload Image from Canvas and Share on Facebook
+        </button>
+      </div>
     </section>
 
-    <section class="gallery-containor">
-      <h3>Select an image</h3>
-      <img
-        src="meme-imgs/meme-imgs (square)/1.jpg"
-        data-id="1"
-        onclick="onSelectImg(this)"
-        class="square"
-      />
-      <img
-        src="meme-imgs/meme-imgs (square)/2.jpg"
-        data-id="2"
-        onclick="onSelectImg(this)"
-      />
-    </section>
-    <button class="btn" onclick="onUploadImg()">
-      Upload Image from Canvas and Share on Facebook
-    </button>
+    <section class="about-container page"></section>
+
     <footer>
       <div class="logo">memegen</div>
       <p>All lights reserved 2024</p>
     </footer>
-    <script src="js/main.js"></script>
-    <script src="js/memeController.js"></script>
+
     <script src="js/memeService.js"></script>
-    <script src="js/galleryController.js"></script>
     <script src="js/sharing-on-facebook.js"></script>
+    <script src="js/galleryController.js"></script>
+    <script src="js/memeController.js"></script>
   </body>
 </html>

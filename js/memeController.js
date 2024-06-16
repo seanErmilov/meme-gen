@@ -1,25 +1,23 @@
 'use strict'
 
-var gElCanvas
-var gCtx
+var gElCanvas = document.querySelector('canvas')
+var gCtx = gElCanvas.getContext('2d')
 var gStartPos
-
-function onInit() {
-  gElCanvas = document.querySelector('canvas')
-  gCtx = gElCanvas.getContext('2d')
-  addListeners()
-
-  resizeCanvas()
-
-  renderMeme()
-}
 
 function renderMeme() {
   const elImg = new Image()
   const meme = getMeme()
-  const imgs = getimgs()
+  const imgs = getImgs()
 
-  elImg.src = imgs[meme.selectedImgId - 1].url
+  elImg.src = imgs[meme.selectedImgId].url
+
+  // if (screen.width < 1000) {
+  //   gElCanvas.width = screen.width - 20
+  //   gElCanvas.height = 400
+  // } else {
+  //   gElCanvas.width = elImg.width
+  //   gElCanvas.height = elImg.height
+  // }
 
   elImg.onload = () => {
     gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
@@ -140,8 +138,20 @@ function addTouchListeners() {
 
 function resizeCanvas() {
   const elContainer = document.querySelector('.canvas-container')
+  const elImg = document.querySelector(
+    `.meme-img[data-id="${getSelectedImgId()}"]`
+  )
+  console.log('elImg :', elImg)
   gElCanvas.width = elContainer.offsetWidth
   gElCanvas.height = elContainer.offsetHeight
+
+  if (screen.width < 1000) {
+    gElCanvas.width = screen.width - 20
+    gElCanvas.height = 400
+  } else {
+    gElCanvas.width = elImg.width
+    gElCanvas.height = elImg.height
+  }
 }
 
 function onSetLineTxt(msg) {

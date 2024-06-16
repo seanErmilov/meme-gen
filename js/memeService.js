@@ -2,22 +2,25 @@
 
 var gMeme
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+var gNextId = 0
 
-var gImgs = [
-  {
-    id: 1,
-    url: 'meme-imgs/meme-imgs (square)/1.jpg',
-    keywords: ['funny', 'cat'],
-  },
-  {
-    id: 2,
-    url: 'meme-imgs/meme-imgs (square)/2.jpg',
-    keywords: ['funny', 'cat'],
-  },
-]
+var gImgs
+
+// var gImgs = [
+//   {
+//     id: 1,
+//     url: 'meme-imgs/meme-imgs (square)/1.jpg',
+//     keywords: ['funny', 'cat'],
+//   },
+//   {
+//     id: 2,
+//     url: 'meme-imgs/meme-imgs (square)/2.jpg',
+//     keywords: ['funny', 'cat'],
+//   },
+// ]
 
 var gMeme = {
-  selectedImgId: 1,
+  selectedImgId: 0,
   selectedLineIdx: 0,
   lines: [
     {
@@ -36,8 +39,13 @@ function getMeme() {
   return gMeme
 }
 
-function getimgs() {
+function getImgs() {
   return gImgs
+}
+
+function getSelectedImgId() {
+  console.log('gImgs[gMeme.selectedImgId] :', gImgs[gMeme.selectedImgId])
+  return gImgs[gMeme.selectedImgId].id
 }
 
 function getSelectedLine() {
@@ -151,4 +159,19 @@ function moveLine(dx, dy) {
   const curPos = gMeme.lines[gMeme.selectedLineIdx].pos
   curPos.x += dx
   curPos.y += dy
+}
+
+function createImgs() {
+  gImgs = []
+  for (var i = 0; i < 18; i++) {
+    gImgs.push(createImg())
+  }
+}
+
+function createImg(keywords = ['funny', 'baby']) {
+  return {
+    id: gNextId++, //1
+    url: `meme-imgs/meme-imgs (square)/${gNextId}.jpg`,
+    keywords,
+  }
 }

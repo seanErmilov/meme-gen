@@ -1,0 +1,50 @@
+@media (max-width: 1100px) {
+  .main-layout {
+    display: grid;
+  }
+
+  .main-nav {
+    position: sticky;
+  }
+
+  .search-input {
+    position: relative;
+
+    width: 130px;
+    height: 1.5em;
+    margin: 10px;
+  }
+
+  .input-search-icon {
+    position: absolute;
+    width: 20px;
+    left: 125px;
+  }
+
+  .frequent-keywords {
+    gap: 10px;
+  }
+
+  .canvas-container {
+    position: relative;
+    margin-inline: auto;
+    top: 28vh;
+    min-height: 20vh;
+    height: 80px;
+    padding: 20px;
+  }
+
+  .contorls-container {
+    position: absolute;
+    transform: translateY(100%);
+
+    min-height: 20vh;
+    min-width: 90vw;
+    margin-inline: 50px;
+    padding-inline: 0;
+  }
+
+  footer {
+    position: fixed;
+  }
+}
